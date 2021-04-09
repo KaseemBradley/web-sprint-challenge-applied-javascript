@@ -74,28 +74,24 @@ const cardAppender = (selector) => {
   //FETCHING Data
   axios
     .get("https://lambda-times-api.herokuapp.com/articles")
-    .then((res) => {
+    .then(({data : {articles}} ) => {
       const cardContainer = document.querySelector(selector);
+      for (const key in articles ) {
+        for (const article of articles[key]) {
+           cardContainer.appendChild(Card(article));
+        }
+      }
 
-      cardContainer.appendChild(Card(res.data.articles.bootstrap[0]));
-      cardContainer.appendChild(Card(res.data.articles.bootstrap[1]));
-      cardContainer.appendChild(Card(res.data.articles.bootstrap[2]));
-      cardContainer.appendChild(Card(res.data.articles.javascript[0]));
-      cardContainer.appendChild(Card(res.data.articles.javascript[1]));
-      cardContainer.appendChild(Card(res.data.articles.javascript[2]));
-      cardContainer.appendChild(Card(res.data.articles.javascript[3]));
-      cardContainer.appendChild(Card(res.data.articles.jquery[0]));
-      cardContainer.appendChild(Card(res.data.articles.jquery[1]));
-      cardContainer.appendChild(Card(res.data.articles.jquery[2]));
-      cardContainer.appendChild(Card(res.data.articles.node[0]));
-      cardContainer.appendChild(Card(res.data.articles.node[1]));
-      cardContainer.appendChild(Card(res.data.articles.technology[0]));
-      cardContainer.appendChild(Card(res.data.articles.technology[1]));
-      cardContainer.appendChild(Card(res.data.articles.technology[2]));
+
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
+axios
+  .get("https://lambda-times-api.herokuapp.com/articles")
+  .then(res => {
+    console.log(res);
+  })
 export { Card, cardAppender };
