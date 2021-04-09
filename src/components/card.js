@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 
 const Card = (article) => {
   // TASK 5
@@ -19,51 +19,47 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
-  
+
   //DIV Instantiate, attrs
-  const div = document.createElement('div');
-  div.classList.add('card');
+  const div = document.createElement("div");
+  div.classList.add("card");
 
   //DIVHEADLINE Instantiate, attrs, text
-  const divHeadline = document.createElement('div');
-  divHeadline.classList.add('headline');
-   divHeadline.textContent = article.headline;
+  const divHeadline = document.createElement("div");
+  divHeadline.classList.add("headline");
+  divHeadline.textContent = article.headline;
 
   //DIVAUTHOR Instantiate, attrs
-  const divAuthor = document.createElement('div');
-  divAuthor.classList.add('author');
+  const divAuthor = document.createElement("div");
+  divAuthor.classList.add("author");
 
   //DIVIMG Instantiate, attrs, text
-  const divImg = document.createElement('div');
-  divImg.classList.add('img-container');
+  const divImg = document.createElement("div");
+  divImg.classList.add("img-container");
 
   //IMG Instantiate, attrs
-  const img = document.createElement('img');
-   img.src = article.authorPhoto;
+  const img = document.createElement("img");
+  img.src = article.authorPhoto;
 
   //SPAN Instantiate, text
-  const span = document.createElement('span');
-   span.textContent = `By ${article.authorName}`
+  const span = document.createElement("span");
+  span.textContent = `By ${article.authorName}`;
 
+  //interactivity
+  div.addEventListener("click", () => {
+    console.log(article.headline);
+  });
 
-  //interactivity 
-  div.addEventListener('click', () => {
-    console.log(article.headline)
-  })
-
-  //Hierarchy 
+  //Hierarchy
   div.appendChild(divHeadline);
   div.appendChild(divAuthor);
   divAuthor.appendChild(divImg);
   divImg.appendChild(img);
   divAuthor.appendChild(span);
 
+  return div;
+};
 
-
-  return div
-}
-
-// console.log(Card())
 
 const cardAppender = (selector) => {
   // TASK 6
@@ -75,34 +71,31 @@ const cardAppender = (selector) => {
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
 
+  //FETCHING Data
   axios
-    .get('https://lambda-times-api.herokuapp.com/articles')
-    .then(res => {
-       const cardContainer = document.querySelector(selector) 
-       
-       cardContainer.appendChild(Card(res.data.articles.bootstrap[0]))
-       cardContainer.appendChild(Card(res.data.articles.bootstrap[1]))
-       cardContainer.appendChild(Card(res.data.articles.bootstrap[2]))
-       cardContainer.appendChild(Card(res.data.articles.javascript[0]))
-       cardContainer.appendChild(Card(res.data.articles.javascript[1]))
-       cardContainer.appendChild(Card(res.data.articles.javascript[2]))
-       cardContainer.appendChild(Card(res.data.articles.javascript[3]))
-       cardContainer.appendChild(Card(res.data.articles.jquery[0]))
-       cardContainer.appendChild(Card(res.data.articles.jquery[1]))
-       cardContainer.appendChild(Card(res.data.articles.jquery[2]))
-       cardContainer.appendChild(Card(res.data.articles.node[0]))
-       cardContainer.appendChild(Card(res.data.articles.node[1]))
-       cardContainer.appendChild(Card(res.data.articles.technology[0]))
-       cardContainer.appendChild(Card(res.data.articles.technology[1]))
-       cardContainer.appendChild(Card(res.data.articles.technology[2]))   
-  })
-}
+    .get("https://lambda-times-api.herokuapp.com/articles")
+    .then((res) => {
+      const cardContainer = document.querySelector(selector);
 
- axios.get('https://lambda-times-api.herokuapp.com/articles')
- .then(res => {
-   console.log(res.data)
- })
+      cardContainer.appendChild(Card(res.data.articles.bootstrap[0]));
+      cardContainer.appendChild(Card(res.data.articles.bootstrap[1]));
+      cardContainer.appendChild(Card(res.data.articles.bootstrap[2]));
+      cardContainer.appendChild(Card(res.data.articles.javascript[0]));
+      cardContainer.appendChild(Card(res.data.articles.javascript[1]));
+      cardContainer.appendChild(Card(res.data.articles.javascript[2]));
+      cardContainer.appendChild(Card(res.data.articles.javascript[3]));
+      cardContainer.appendChild(Card(res.data.articles.jquery[0]));
+      cardContainer.appendChild(Card(res.data.articles.jquery[1]));
+      cardContainer.appendChild(Card(res.data.articles.jquery[2]));
+      cardContainer.appendChild(Card(res.data.articles.node[0]));
+      cardContainer.appendChild(Card(res.data.articles.node[1]));
+      cardContainer.appendChild(Card(res.data.articles.technology[0]));
+      cardContainer.appendChild(Card(res.data.articles.technology[1]));
+      cardContainer.appendChild(Card(res.data.articles.technology[2]));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
-
-
-export { Card, cardAppender }
+export { Card, cardAppender };
