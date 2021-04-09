@@ -13,7 +13,35 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
+    //DIV Instantiate, attrs
+    const div = document.createElement('div');
+    div.classList.add('topics');
+
+    //DIV2 Instantiate, attrs, text
+    const div2 = document.createElement('div');
+    div2.classList.add('tab');
+    div2.textContent = topics[0];
+
+    //DIV3 Instantiate, attrs, text
+    const div3 = document.createElement('div');
+    div3.classList.add('tab');
+    div3.textContent = topics[1];
+
+    //DIV4 Instantiate, attrs, text
+    const div4 = document.createElement('div');
+    div4.classList.add('tab');
+    div4.textContent = topics[2];
+
+    //Hierarchy 
+    div.appendChild(div2);
+    div.appendChild(div3);
+    div.appendChild(div4);
+    
+    
+    return div
 }
+
+console.log(Tabs(["JavaScript", "Bootstrap", "Technology"]));
 
 const tabsAppender = (selector) => {
   // TASK 4
