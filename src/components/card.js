@@ -47,6 +47,9 @@ const Card = (article) => {
 
 
   //interactivity 
+  div.addEventListener('click', () => {
+    console.log(article.headline)
+  })
 
   //Hierarchy 
   div.appendChild(divHeadline);
@@ -91,10 +94,7 @@ const cardAppender = (selector) => {
        cardContainer.appendChild(Card(res.data.articles.node[1]))
        cardContainer.appendChild(Card(res.data.articles.technology[0]))
        cardContainer.appendChild(Card(res.data.articles.technology[1]))
-       cardContainer.appendChild(Card(res.data.articles.technology[2]))
-
-      
-       
+       cardContainer.appendChild(Card(res.data.articles.technology[2]))   
   })
 }
 
